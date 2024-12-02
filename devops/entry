@@ -1,0 +1,32 @@
+#!/bin/bash
+set -x
+action=$1
+shift
+
+case $action in
+  runserver)
+    exec python manage.py runserver 0.0.0.0:8000
+    ;;
+  migrate)
+    python manage.py migrate
+    ;;
+  makemigrations)
+    exec python manage.py makemigrations
+    ;;
+  shell)
+    exec python manage.py shell_plus
+    ;;
+  test)
+    export TESTING=True
+    exec pytest "$@" -c .config/pytest.ini
+    ;;
+  celery)
+    exec celery -A project.celery worker -Q default -l INFO "$@"
+    ;;
+  celery-beat)
+    exec celery -A project.celery beat -l INFO "$@"
+    ;;
+  *)
+    exec $action "$@"
+    ;;
+esac

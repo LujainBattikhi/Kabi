@@ -1,0 +1,8 @@
+Django==4.2
+djangorestframework==3.14.0
+psycopg2-binary==2.9.7
+python-decouple==3.8
+django-braces==1.15.0
+celery
+django-celery-beat
+redis
