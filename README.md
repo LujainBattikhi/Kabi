@@ -1,9 +1,8 @@
 # Kabi Project
 
-## A Unified E-Platform for Inheritance Distribution
+## A Job Search E-Platform 
 
-Aiming to facilitate and organize the process of distributing the inheritance from the deceased between the rightful
-heirs in an electronic and effective manner.
+Aiming to retrieve jobs from glassdoor and enable users to search for them in a more user-friendly way.
 
 ## Branch naming convention
 
