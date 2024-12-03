@@ -6,13 +6,12 @@ WORKDIR /app
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    gcc \
-    libpq-dev \
-    python3-dev \
-    build-essential \
-    --no-install-recommends && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    chromium-driver \
+    chromium \
+    wget \
+    curl \
+    gnupg \
+    && apt-get clean
 
 # Upgrade pip
 RUN pip install --upgrade pip

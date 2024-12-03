@@ -1,6 +1,7 @@
 # Variables
 PROJECT_NAME = Kabi
 COMPOSE_FILE = devops/docker-compose.yml
+SERVICES_COMPOSE_FILE = devops/docker-compose.services.yml
 SERVICE_WEB = kabi-server
 SERVICE_DB = db
 DOCKER_EXEC_WEB = docker exec -it $(SERVICE_WEB)
@@ -30,12 +31,18 @@ help:
 image:
 	docker-compose -f $(COMPOSE_FILE) build
 
-.PHONY: up
 dev-run:
 	docker-compose -f $(COMPOSE_FILE) up
 
 dev-run-d:
 	docker-compose -f $(COMPOSE_FILE) up -d
+
+.PHONY: up
+services:
+	docker-compose -f $(SERVICES_COMPOSE_FILE) up
+
+services-d:
+	docker-compose -f $(SERVICES_COMPOSE_FILE) up -d
 
 .PHONY: down
 down:
@@ -83,6 +90,8 @@ clean:
 clean-volumes:
 	docker-compose -f $(COMPOSE_FILE) down --volumes
 
-
 dev-ssh:
 	docker-compose -f $(COMPOSE_FILE) exec kabi-server bash
+
+dev-attach:
+	docker attach kabi-server
