@@ -1,29 +1,11 @@
 {% load static i18n %}
-<footer class="{{ footer_main|default:'bg-white' }}  mt-3">
-    <div class="container-fluid">
-        <div class="row {{ footer_logo_section }} d-flex box px-md-8 px-0 py-0 py-md-5 ">
-            <div class="col-12 mb-2 mb-md-3">
-                <a href="/" class="d-flex align-items-center mb-3 mt-3 mt-md-0 link-body-emphasis text-decoration-none">
-                    {% if footer_light_logo %}
-                        <img width="140" height="40" class="me-4" alt="Tarekat" src="{% static 'images/light-tarekat.png' %}">
-                    {% else %}
-                        <img width="140" height="40" class="me-4" alt="Tarekat" src="{% static 'images/Tarekat.png' %}">
-                    {% endif %}
-                </a>
-                <p class="fw-400  {{ footer_description|default:'text-g1' }}">{% trans 'An electronic platform under the spotlight of the Ministry of Justice, capable of issuing and capable of excellence in all safety' %}</p>
-                <p class="fw-400 {{ footer_description|default:'text-g1' }}">{% trans 'All rights reserved to the unified platform for dividing the estate © 2024' %}</p>
-            </div>
-            <div class="{{ footer_description|default:'text-g1' }} mb-2 mb-md-0 d-flex justify-content-start align-self-center ">
-                <a class="me-4 fw-700">{% trans 'Privacy Policy' %}</a>
-                <a class="mx-4 fw-700">{% trans 'Terms Of Use' %}</a>
-            </div>
-        </div>
-        <div class="text-dark g-0 px-md-8 px-0 d-flex flex-wrap justify-content-md-between align-items-center fs-9 mt-4 mb-4">
-
-            <div class="d-flex justify-content-between">
-                <img class="me-4" width="136" height="60" alt="MOJ" src="{% static 'images/MOJ.png' %}">
-                <img class="mt-2" width="60" height="40" alt="KSA" src="{% static 'images/2023.png' %}">
-            </div>
-        </div>
-    </div>
-</footer>
+<div class="bg-light">
+  <footer class="py-3 my-4">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+    </ul>
+    <p class="text-center text-body-secondary">© 2024 Kabi, Inc</p>
+  </footer>
+</div>
