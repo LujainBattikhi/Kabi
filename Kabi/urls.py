@@ -20,6 +20,6 @@ from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('Kabi.apps.main.urls')),
+    path('', include('Kabi.apps.jobs.urls')),
     path('accounts/', include('Kabi.apps.accounts.urls')),
 ]

@@ -1,0 +1,42 @@
+<div class="pagination">
+    {% if is_paginated %}
+        <ul class="pagination-list">
+            <!-- Previous Page -->
+            {% if object_list.has_previous %}
+                <li>
+                    <a href="?q={{ request.GET.q }}&page=1" class="pagination-link">First</a>
+                </li>
+                <li>
+                    <a href="?q={{ request.GET.q }}&page={{ object_list.previous_page_number }}" class="pagination-link">« Previous</a>
+                </li>
+            {% else %}
+                <li class="disabled"><span class="pagination-link">First</span></li>
+                <li class="disabled"><span class="pagination-link">« Previous</span></li>
+            {% endif %}
+
+            <!-- Page Numbers -->
+            {% for num in object_list.paginator.page_range %}
+                {% if num == object_list.number %}
+                    <li class="active"><span class="pagination-link current">{{ num }}</span></li>
+                {% elif num >= object_list.number|add:-2 and num <= object_list.number|add:2 %}
+                    <li>
+                        <a href="?q={{ request.GET.q }}&page={{ num }}" class="pagination-link">{{ num }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+
+            <!-- Next Page -->
+            {% if object_list.has_next %}
+                <li>
+                    <a href="?q={{ request.GET.q }}&page={{ object_list.next_page_number }}" class="pagination-link">Next »</a>
+                </li>
+                <li>
+                    <a href="?q={{ request.GET.q }}&page={{ object_list.paginator.num_pages }}" class="pagination-link">Last</a>
+                </li>
+            {% else %}
+                <li class="disabled"><span class="pagination-link">Next »</span></li>
+                <li class="disabled"><span class="pagination-link">Last</span></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+</div>

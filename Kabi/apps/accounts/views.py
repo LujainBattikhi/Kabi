@@ -22,7 +22,7 @@ class SignupView(AnonymousRequiredMixin,FormView):
 
 class CustomLoginView(AnonymousRequiredMixin, LoginView):
     template_name = 'accounts/login.html'
-    authenticated_redirect_url = reverse_lazy('main:home_page')
+    authenticated_redirect_url = reverse_lazy('jobs:home_page')
     form_class = AuthenticationForm
     extra_context = {
         'body_class': 'center'

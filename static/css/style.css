@@ -1,4 +1,8 @@
 /* General Reset */
+:root{
+   --bs-light-rgb:255,255,255;
+
+}
 body, h2, p, input, button {
   margin: 0;
   padding: 0;
@@ -132,5 +136,45 @@ p {
 }
 
 
-/* Home page */
 
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.pagination-list {
+    list-style: none;
+    display: flex;
+    gap: 5px;
+    padding: 0;
+}
+
+.pagination-link {
+    display: inline-block;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: #007bff;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.pagination-link:hover {
+    background-color: #f1f1f1;
+    color: #0056b3;
+}
+
+.pagination-list .active .pagination-link {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+    pointer-events: none;
+}
+
+.pagination-list .disabled .pagination-link {
+    color: #999;
+    pointer-events: none;
+    border-color: #ddd;
+}

@@ -1,0 +1,37 @@
+{% extends 'layout/full_layout.html' %}
+{% load static %}
+
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/splitting.css' %}"/>
+{% endblock %}
+{% block content %}
+
+    <div class="my-5 container shadow text-center bg-light card">
+        <h2 class="py-4">Welcome To Kabi Jobs</h2>
+        <div class="mb-5">
+            <form class="d-flex" method="get">
+                <input type="text" name="q" class="border-2 border-left-0 flex-grow-1 form-control" placeholder="Search jobs..." value="{{ request.GET.q }}">
+                <button class="w-50 btn" type="submit">Search</button>
+            </form>
+        </div>
+        <div class="mb-4 d-flex flex-wrap gap-3 justify-content-center flex-row">
+            {% if not job_postings %}
+                <p>No jobs found matching your search criteria.</p>
+            {% endif %}
+            {% for job in job_postings %}
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ job.title }}</h5>
+                        <h6 class="card-subtitle text-muted">{{ job.company_name }}</h6>
+                        <div class="mb-2 text-muted">{{ job.location }}</div>
+                        <div class="card-text">{{ job.description }}</div>
+                        <div class="card-text">{{ job.salary }}</div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% include 'partial/_pagination.html' with object_list=job_postings %}
+    </div>
+
+{% endblock %}
