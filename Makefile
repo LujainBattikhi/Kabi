@@ -64,8 +64,8 @@ exec:
 migrate:
 	docker-compose -f $(COMPOSE_FILE) run --rm $(SERVICE_WEB)  migrate
 
-.PHONY: makemigrations
-makemigrations:
+.PHONY: migrations
+migrations:
 	docker-compose -f $(COMPOSE_FILE) run --rm $(SERVICE_WEB)  makemigrations
 
 .PHONY: superuser
