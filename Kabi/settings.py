@@ -42,8 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Kabi.apps.main',
+    'django_filters',
     'Kabi.apps.accounts',
+    'Kabi.apps.jobs',
 ]
 
 MIDDLEWARE = [

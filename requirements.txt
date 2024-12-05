@@ -7,3 +7,4 @@ celery>=5.3.0
 redis>=5.0
 requests>=2.28.0
 selenium==4.15.0
+django-filter==2.4.0
