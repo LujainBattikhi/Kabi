@@ -23,20 +23,10 @@ Please note that you need the .env file from a teammate.
 1. Run `make image` to build fresh image of the app
 1. Now you have couple of options
     1. Run `make tests` to run tests against that image
-    2. Run `make lints` to check lints against that image
-    3. Run `make dev-run` to run the image as a server and celery worker, open http://localhost:8080 (or your docker
-       machine IP address) to play with it
-    4. Don't forget to run `make dev-migrate` to run migrations if needed
-    5. Don't forget to run `make compile-massages` to apply text translations
-    6. Run `make dev-init-data`to load fixtures . Now you access by the super admin:
-        1. Username 'root'
-        2. password 'root@001'
-    7. Run `make dev-ssh` to ssh into running django container
-    8. Run `make massages` to create new translations
-    9. If there is a hanging container you can always run `make dev-down` and/or `make services-down`
-    10. Run `make clean` to down all containers and clean database directories
-    11. Run `make help` to get some extra help, read Makefile to see what is going on behind the scenes
+    2. Run `make dev-run` to run the image as a server and celery worker, open http://localhost:8080 (or your docker
+        machine IP address) to play with it
+    3. Don't forget to run `make dev-migrate` to run migrations if needed
+    4. Run `make dev-ssh` to ssh into running django container
+    5. Run `make clean` to down all containers and clean database directories
+    6. Run `make help` to get some extra help, read Makefile to see what is going on behind the scenes
 
-## Extra
-
-1. Use the URL /explorer to access smart SQL editor
