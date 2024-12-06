@@ -7,9 +7,28 @@ services:
       - "4444:4444"
     restart: always
 
-  tarekat-redis:
+  kabi-redis:
     image: redis:latest
     hostname: redis
-    container_name: tarekat-redis
+    container_name: kabi-redis
     expose:
       - "6379"
+
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: kabi
+      POSTGRES_PASSWORD: kabi
+      POSTGRES_DB: kabi_db
+    env_file:
+      - ../.env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+
+volumes:
+  postgres_data:

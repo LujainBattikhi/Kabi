@@ -91,7 +91,7 @@ clean-volumes:
 	docker-compose -f $(COMPOSE_FILE) down --volumes
 
 dev-ssh:
-	docker-compose -f $(COMPOSE_FILE) exec kabi-server bash
+	docker-compose -f $(COMPOSE_FILE) -f ${SERVICES_COMPOSE_FILE} exec kabi-server bash
 
 dev-attach:
 	docker attach kabi-server

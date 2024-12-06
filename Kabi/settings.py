@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 
+from celery.schedules import crontab
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -144,3 +145,62 @@ LOGOUT_REDIRECT_URL = '/accounts/login/' # Redirect here after logout
 
 
 # Celery Configuration Options
+
+CELERY_BROKER_URL = 'redis://kabi-redis:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
+# Celery Beat settings (optional, if needed)
+CELERY_BEAT_SCHEDULE = {
+    'health_checker': {
+        'task': 'Kabi.apps.jobs.tasks.health_checker',
+        'schedule': crontab(minute='*/30'),
+    },
+    'test_task': {
+        'task': 'Kabi.apps.jobs.tasks.load_jobs',
+        'schedule': crontab(hour='0', minute='0'),
+    },
+}
+
+LOGS_PATH = config('LOGS_PATH', '')
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+        'activity': {
+            'class': 'logging.FileHandler',
+            'filename': LOGS_PATH + 'activity_logs.log',
+        },
+        'rotator': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': LOGS_PATH + 'server_logs.log',
+            'maxBytes': 1024 * 1024 * 100,  # 100 mb
+        },
+    },
+    'loggers': {
+        'activity': {
+            'handlers': ['activity', 'console'],
+            'level': config('DJANGO_LOG_LEVEL', 'INFO'),
+        },
+        'django': {
+            'handlers': ['console', 'rotator'],
+            'level': config('DJANGO_LOG_LEVEL', 'INFO'),
+        },
+        'celery': {
+            'handlers': ['console', 'rotator'],
+            'level': config('DJANGO_LOG_LEVEL', 'INFO'),
+        },
+        'Kabi': {
+            'handlers': ['console', 'rotator'],
+            'level': config('DJANGO_LOG_LEVEL', 'INFO'),
+        },
+        'django.db': {
+            'handlers': ['console', 'rotator'],
+            'level': config('DJANGO_LOG_LEVEL', 'INFO'),
+        },
+    },
+}

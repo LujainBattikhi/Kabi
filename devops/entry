@@ -21,12 +21,12 @@ case $action in
     exec pytest "$@" -c .config/pytest.ini
     ;;
   celery)
-    exec celery -A project.celery worker -Q default -l INFO "$@"
+    exec celery -A Kabi worker -l INFO
     ;;
   celery-beat)
-    exec celery -A project.celery beat -l INFO "$@"
+    exec celery -A Kabi beat -l INFO "$@"
     ;;
   *)
-    exec $action "$@"
+    exec "$action" "$@"
     ;;
 esac

@@ -6,7 +6,6 @@ from django.urls import reverse_lazy
 
 from Kabi.apps.jobs.filters import JobPostingFilter
 from Kabi.apps.jobs.models import JobPosting
-from Kabi.apps.jobs.scraper import  scrape_jobs
 from django_filters.views import FilterView
 
 

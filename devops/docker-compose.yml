@@ -11,24 +11,31 @@ services:
       - ../:/app
     env_file:
       - ../.env
-    depends_on:
-      - db
     stdin_open: true
     tty: true
-  db:
-    image: postgres:15
-    container_name: postgres_db
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_USER: kabi
-      POSTGRES_PASSWORD: kabi
-      POSTGRES_DB: kabi_db
+
+  celery-worker:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    container_name: celery-worker
+    command: ["celery"]
+    depends_on:
+      - kabi-redis
+    volumes:
+      - ../:/app
     env_file:
       - ../.env
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    restart: always
 
-volumes:
-  postgres_data:
+  celery-beat:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    container_name: celery-beat
+    command: ["celery-beat"]
+    depends_on:
+      - kabi-redis
+    volumes:
+      - ../:/app
+    env_file:
+      - ../.env
