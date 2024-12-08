@@ -1,8 +1,5 @@
-from braces.views import AnonymousRequiredMixin, LoginRequiredMixin
+from braces.views import LoginRequiredMixin
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.views.generic import TemplateView, ListView
-from django.contrib.auth.views import LoginView
-from django.urls import reverse_lazy
 
 from Kabi.apps.jobs.filters import JobPostingFilter
 from Kabi.apps.jobs.models import JobPosting

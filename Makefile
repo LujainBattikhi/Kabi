@@ -74,7 +74,7 @@ superuser:
 
 .PHONY: test
 test:
-	docker-compose -f $(COMPOSE_FILE) run --rm $(SERVICE_WEB)  test
+	docker-compose -f $(COMPOSE_FILE) run --rm $(SERVICE_WEB) python manage.py test Kabi.apps.jobs
 
 # Database-related targets
 .PHONY: dbshell
