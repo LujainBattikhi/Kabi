@@ -72,8 +72,7 @@ migrations:
 superuser:
 	docker-compose -f $(COMPOSE_FILE) run --rm $(SERVICE_WEB)  createsuperuser
 
-.PHONY: test
-test:
+tests:
 	docker-compose -f $(COMPOSE_FILE) run --rm $(SERVICE_WEB) python manage.py test Kabi.apps.jobs
 
 # Database-related targets
